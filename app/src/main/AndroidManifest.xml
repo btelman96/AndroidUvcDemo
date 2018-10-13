@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        package="com.ford.openxc.webcam"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.ford.openxc.webcamdemo"
         android:label="@string/app_name">
 
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
-        android:name=".app.WebCamApp"
-        android:label="@string/app_name">
+        android:name="com.ford.openxc.webcamdemo.app.WebCamApp"
+        android:label="@string/app_name"
+        tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".activity.CameraActivity">
+        <activity android:name="com.ford.openxc.webcamdemo.activity.CameraActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <service android:name=".webcam.WebcamService"/>
+        <service android:name="com.ford.openxc.webcam.webcam.WebcamService"/>
     </application>
 
 </manifest>

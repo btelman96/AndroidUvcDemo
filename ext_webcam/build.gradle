@@ -1,21 +1,27 @@
-apply plugin: 'com.android.application'
-
-static def releaseTime() {
-    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("GMT+08:00"))
-}
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 28
     buildToolsVersion '28.0.3'
 
+
     defaultConfig {
-        applicationId "com.ford.openxc.webcamdemo"
         minSdkVersion 10
         targetSdkVersion 28
-        versionCode 2
-        versionName "1.0.2"
-    }
+        versionCode 1
+        versionName "1.0"
 
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    externalNativeBuild {
+        ndkBuild {
+            // Tells Gradle to find the root ndk-build script in the same
+            // directory as the module's build.gradle file. Gradle requires this
+            // build script to add your ndk-build project as a build dependency and
+            // pull your native sources into your Android project.
+            path "Android.mk"
+        }
+    }
 
     flavorDimensions "abi"
     productFlavors  {
@@ -45,27 +51,16 @@ android {
         }
     }
 
-
-    //自定义apk安装包名
-    applicationVariants.all { variant ->
-        variant.outputs.all { output ->
-            output.outputFileName = "/${variant.buildType.name}"+
-            "webcam-${variant.buildType.name}-v${variant.versionName}-${variant.productFlavors[0].name}-${releaseTime()}.apk".toLowerCase()
-        }
-    }
-
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
-
-
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.github.zhaokaiqiang.klog:library:1.6.0'
-    implementation project(':ext_webcam')
 }

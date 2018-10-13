@@ -1,4 +1,4 @@
-package com.ford.openxc.webcam.app;
+package com.ford.openxc.webcamdemo.app;
 /*
 ******************* Copyright (c) ***********************\
 **
@@ -42,7 +42,7 @@ package com.ford.openxc.webcam.app;
 
 import android.app.Application;
 
-import com.ford.openxc.webcam.BuildConfig;
+import com.ford.openxc.webcamdemo.BuildConfig;
 import com.socks.library.KLog;
 
 public class WebCamApp extends Application {

@@ -1,4 +1,4 @@
-package com.ford.openxc.webcam.activity;
+package com.ford.openxc.webcamdemo.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -6,8 +6,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.ford.openxc.webcam.R;
 import com.ford.openxc.webcam.webcam.WebcamPreview;
+import com.ford.openxc.webcamdemo.R;
+
 
 public class CameraActivity extends Activity {
     private EditText mEtVideo;
