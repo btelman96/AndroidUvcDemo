@@ -65,5 +65,4 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.github.zhaokaiqiang.klog:library:1.6.0'
 }

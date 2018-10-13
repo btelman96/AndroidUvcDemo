@@ -1,8 +1,7 @@
 package com.ford.openxc.webcam.webcam;
 
 import android.graphics.Bitmap;
-
-import com.socks.library.KLog;
+import android.util.Log;
 
 import java.io.File;
 
@@ -43,17 +42,17 @@ public class NativeWebcam implements IWebcam {
         File deviceFile = new File(deviceName);
         if(deviceFile.exists()) {
             if(!deviceFile.canRead()) {
-                KLog.w(TAG, "Insufficient permissions on " + deviceName +
+                Log.w(TAG, "Insufficient permissions on " + deviceName +
                         " -- does the app have the CAMERA permission?");
                 deviceReady = false;
             }
         } else {
-            KLog.w(TAG, deviceName + " does not exist");
+            Log.w(TAG, deviceName + " does not exist");
             deviceReady = false;
         }
 
         if(deviceReady) {
-            KLog.w(TAG, "Preparing camera with device name " + deviceName);
+            Log.w(TAG, "Preparing camera with device name " + deviceName);
             startCamera(deviceName, width, height);
         }
     }

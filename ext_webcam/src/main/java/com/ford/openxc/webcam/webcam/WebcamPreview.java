@@ -9,10 +9,9 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.os.IBinder;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-
-import com.socks.library.KLog;
 
 public class WebcamPreview extends SurfaceView implements
         SurfaceHolder.Callback, Runnable {
@@ -35,7 +34,7 @@ public class WebcamPreview extends SurfaceView implements
     }
 
     private void init() {
-        KLog.w(TAG, "WebcamPreview constructed");
+        Log.w(TAG, "WebcamPreview constructed");
         setFocusable(true);
 
         mHolder = getHolder();
@@ -57,7 +56,7 @@ public class WebcamPreview extends SurfaceView implements
         mRunning = false;
 
         if(mWebcamService != null) {
-            KLog.w(TAG, "Unbinding from webcam manager");
+            Log.w(TAG, "Unbinding from webcam manager");
             getContext().unbindService(mConnection);
             mWebcamService = null;
         }
@@ -95,14 +94,14 @@ public class WebcamPreview extends SurfaceView implements
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        KLog.w(TAG, "Surface created");
+        Log.w(TAG, "Surface created");
 
         startPreview(WebcamService.VIDEO);
     }
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
-        KLog.w(TAG, "Surface destroyed");
+        Log.w(TAG, "Surface destroyed");
 
         stopPreview();
     }
@@ -110,7 +109,7 @@ public class WebcamPreview extends SurfaceView implements
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int winWidth,
             int winHeight) {
-        KLog.w("WebCam", "surfaceChanged");
+        Log.w("WebCam", "surfaceChanged");
         int width, height, dw, dh;
         if(winWidth * 3 / 4 <= winHeight) {
             dw = 0;
@@ -129,7 +128,7 @@ public class WebcamPreview extends SurfaceView implements
     private ServiceConnection mConnection = new ServiceConnection() {
         public void onServiceConnected(ComponentName className,
                 IBinder service) {
-            KLog.w(TAG, "Bound to WebcamManager");
+            Log.w(TAG, "Bound to WebcamManager");
             synchronized(mServiceSyncToken) {
                 mWebcamService = ((WebcamService.WebcamBinder)service).getService();
                 mServiceSyncToken.notify();
@@ -137,7 +136,7 @@ public class WebcamPreview extends SurfaceView implements
         }
 
         public void onServiceDisconnected(ComponentName className) {
-            KLog.w(TAG, "WebcamManager disconnected unexpectedly");
+            Log.w(TAG, "WebcamManager disconnected unexpectedly");
             synchronized(mServiceSyncToken) {
                 mRunning = false;
                 mWebcamService = null;

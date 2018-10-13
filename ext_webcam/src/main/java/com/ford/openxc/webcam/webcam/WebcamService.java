@@ -5,8 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Binder;
 import android.os.IBinder;
-
-import com.socks.library.KLog;
+import android.util.Log;
 
 public class WebcamService extends Service {
     private final static String TAG = "WebcamManager";
@@ -27,10 +26,10 @@ public class WebcamService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        KLog.w(TAG, "Service onStartCommand");
+        Log.w(TAG, "Service onStartCommand");
         video = intent.getStringExtra("video");
 
-        KLog.w(TAG, "video: " + video);
+        Log.w(TAG, "video: " + video);
 
         // TODO: 16-3-22 修改video设备号
         mWebcam = new NativeWebcam(video);
@@ -40,7 +39,7 @@ public class WebcamService extends Service {
 
     @Override
     public void onCreate() {
-        KLog.w(TAG, "Service onCreate");
+        Log.w(TAG, "Service onCreate");
         super.onCreate();
 
         // TODO: 16-3-22 修改video设备号
@@ -50,13 +49,13 @@ public class WebcamService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        KLog.w(TAG, "Service being destroyed");
+        Log.w(TAG, "Service being destroyed");
         mWebcam.stop();
     }
 
     @Override
     public IBinder onBind(Intent intent) {
-        KLog.w(TAG, "Service binding in response to " + intent);
+        Log.w(TAG, "Service binding in response to " + intent);
         return mBinder;
     }
 
