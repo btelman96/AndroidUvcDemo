@@ -8,6 +8,7 @@
 #include <string.h>
 #include <fcntl.h>
 #include <malloc.h>
+#include <unistd.h>
 
 int open_device(const char* dev_name, int* fd) {
     struct stat st;

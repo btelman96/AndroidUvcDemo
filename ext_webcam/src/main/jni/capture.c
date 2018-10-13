@@ -7,6 +7,8 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <linux/videodev2.h>
+#include <string.h>
+#include <malloc.h>
 
 int start_capture(int fd) {
     unsigned int i;

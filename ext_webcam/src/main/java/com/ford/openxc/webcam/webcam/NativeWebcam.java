@@ -18,7 +18,6 @@ public class NativeWebcam implements IWebcam {
 
 
     private native int startCamera(String deviceName, int width, int height);
-    private native void processCamera();
     private native boolean cameraAttached();
     private native void stopCamera();
     private native void loadNextFrame(Bitmap bitmap);
